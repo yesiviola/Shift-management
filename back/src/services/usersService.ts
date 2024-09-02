@@ -6,9 +6,12 @@ const users: IUser[] = [];
 let userId: number = 1;
 
 export const getUsersService = async (): Promise<IUser[]> => {
-  const allUsers: IUser[] = users; //aqui va la llamada a la DB
-
-  return allUsers;
+  const allUsers: IUser[] = users;
+  if (!allUsers) {
+    throw Error("Database error when searching for a user");
+  } else {
+    return allUsers;
+  }
 };
 
 export const getUserByIdService = async (id: number): Promise<IUser> => {
